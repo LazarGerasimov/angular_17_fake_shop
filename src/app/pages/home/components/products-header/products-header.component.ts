@@ -10,4 +10,11 @@ import { MatMenuModule } from '@angular/material/menu';
   templateUrl: './products-header.component.html',
   styleUrl: './products-header.component.scss',
 })
-export class ProductsHeaderComponent {}
+export class ProductsHeaderComponent {
+  sort = 'desc';
+  itemsShowCount = 12;
+
+  onSortUpdated(newSort: string) {
+    this.sort = newSort
+  }
+}
