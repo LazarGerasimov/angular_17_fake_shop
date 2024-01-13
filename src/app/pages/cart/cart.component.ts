@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartInterface, CartItemInterface } from '../../models/cart.model';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,6 +24,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
+
+  cartService = inject(CartService);
+
   cart: CartInterface = {
     items: [
       {
@@ -58,9 +62,7 @@ export class CartComponent implements OnInit {
     this.dataSource = this.cart.items;
   }
 
-  getTotal(items: CartItemInterface[]): number {
-    return items
-      .map((item) => item.price * item.quantity)
-      .reduce((prev, current) => prev + current, 0);
+  getTotal(items: Array<CartItemInterface>): number {
+    return this.cartService.getTotal(items);
   }
 }

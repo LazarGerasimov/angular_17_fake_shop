@@ -11,6 +11,7 @@ export class CartService {
 
   constructor(private _snackbar: MatSnackBar) {}
 
+  // add items to cart
   addToCart(item: CartItemInterface) {
     const items = [...this.cart.value.items];
 
@@ -24,6 +25,17 @@ export class CartService {
 
     this.cart.next({ items });
     this._snackbar.open('1 item added to cart.', 'Ok', { duration: 3000 });
-    console.log(this.cart.value);
+  }
+
+  // get total price of cart items
+  getTotal(items: CartItemInterface[]): number {
+    return items
+      .map((item) => item.price * item.quantity)
+      .reduce((prev, current) => prev + current, 0);
+  }
+
+  clearCart() {
+    this.cart.next({ items: [] });
+    this._snackbar.open('Cart is emptied.', 'Ok', { duration: 3000 });
   }
 }

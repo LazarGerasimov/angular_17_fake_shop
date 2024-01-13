@@ -1,41 +1,41 @@
 <mat-toolbar class="border-x flex justify-between max-w-7xl mx-auto border-b">
   <a href="/">Fakeshop Ltd</a>
   <button mat-icon-button [mat-menu-trigger-for]="menu">
-    <mat-icon matBadge="1" matBadgeColor="warn"> shopping_cart</mat-icon>
+    <mat-icon
+      [matBadge]="itemsQuantity"
+      matBadgeColor="warn"
+      [matBadgeHidden]="!itemsQuantity"
+    >
+      shopping_cart</mat-icon
+    >
   </button>
   <mat-menu #menu="matMenu">
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
-        <span class="mr-16">1 items</span>
+        <span class="mr-16">{{ itemsQuantity }} items</span>
         <a href="cart">View Cart</a>
       </div>
-      <div class="p-2">
+      <div *ngIf="cart.items.length" class="p-2">
+        @for (item of cart.items; track item) {
         <div class="flex justify-between font-light mb-2 py-2">
           <!-- loop through items -->
-          Keyboard x 1
-          <span class="font-bold">{{ "150" | currency }}</span>
+          {{ item.name }} x {{ item.quantity }}
+          <span class="font-bold">{{ item.price | currency }}</span>
         </div>
-        <div class="flex justify-between font-light mb-2 py-2">
-          <!-- loop through items -->
-          Keyboard x 1
-          <span class="font-bold">{{ "150" | currency }}</span>
-        </div>
-        <div class="flex justify-between font-light mb-2 py-2">
-          <!-- loop through items -->
-          Keyboard x 1
-          <span class="font-bold">{{ "150" | currency }}</span>
-        </div>
+        }
       </div>
       <div class="flex justify-between p-2 font-light">
         Total:
-        <span class="font-bold">{{ "450" | currency }}</span>
+        <span class="font-bold">{{ getTotal(cart.items) | currency }}</span>
       </div>
       <div class="pt-3 flex justify-between">
-        <button class="bg-rose-600 text-white rounded-full w-9 h-9">
+        <button (click)="onClearCart()" class="bg-rose-600 text-white rounded-full w-9 h-9">
           <mat-icon class="pt-[2px]">remove_shopping_cart</mat-icon>
         </button>
         <button class="bg-green-600 text-white rounded-full w-9 h-9">
-          <a href="/cart"><mat-icon class="pt-[2px]">shopping_cart</mat-icon></a>
+          <a href="/cart"
+            ><mat-icon class="pt-[2px]">shopping_cart</mat-icon></a
+          >
         </button>
       </div>
     </div>
