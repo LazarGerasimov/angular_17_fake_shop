@@ -38,4 +38,13 @@ export class CartService {
     this.cart.next({ items: [] });
     this._snackbar.open('Cart is emptied.', 'Ok', { duration: 3000 });
   }
+
+  removeItemFromCart(item: CartItemInterface) {
+    const filteredItems = this.cart.value.items.filter(
+      (_item) => _item.id !== item.id
+    );
+    // update state
+    this.cart.next({ items: filteredItems });
+    this._snackbar.open('Item removed from cart', 'Ok', { duration: 3000 });
+  }
 }
