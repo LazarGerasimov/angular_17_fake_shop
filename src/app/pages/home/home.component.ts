@@ -9,4 +9,12 @@ import { ProductsHeaderComponent } from './components/products-header/products-h
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  public cols = 3; // default 
+
+  onColumnsCountChange(colsNum: number) {
+    this.cols = colsNum;
+    console.log(this.cols)
+  }
+}
