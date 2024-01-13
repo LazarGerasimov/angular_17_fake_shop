@@ -35,13 +35,13 @@
       <th mat-header-cell *matHeaderCellDef>Quantity</th>
       <td mat-cell *matCellDef="let element">
         <p class="truncate max-w-xs flex items-center">
-          <button mat-icon-button>
+          <button (click)="onRemoveQuantity(element)" mat-icon-button>
             <mat-icon class="text-rose-500">remove</mat-icon>
           </button>
           <span>
             {{ element.quantity }}
           </span>
-          <button mat-icon-button>
+          <button (click)="onAddQuantity(element)" mat-icon-button>
             <mat-icon class="text-green-500">add</mat-icon>
           </button>
         </p>
@@ -65,17 +65,29 @@
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>
-        <button (click)="onClearCart()" mat-raised-button color="warn" class="float-right">
+        <button
+          (click)="onClearCart()"
+          mat-raised-button
+          color="warn"
+          class="float-right"
+        >
           Clear All
         </button>
       </th>
       <td mat-cell *matCellDef="let element">
-        <button (click)="onItemRemoveFromCart(element)" mat-mini-fab color="warn" class="float-right">
+        <button
+          (click)="onItemRemoveFromCart(element)"
+          mat-mini-fab
+          color="warn"
+          class="float-right"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </td>
       <td mat-footer-cell *matFooterCellDef>
-        <button mat-raised-button color="primary" class="float-right">Proceed to Checkout</button>
+        <button mat-raised-button color="primary" class="float-right">
+          Proceed to Checkout
+        </button>
       </td>
     </ng-container>
 

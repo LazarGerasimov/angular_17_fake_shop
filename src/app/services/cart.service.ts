@@ -39,12 +39,41 @@ export class CartService {
     this._snackbar.open('Cart is emptied.', 'Ok', { duration: 3000 });
   }
 
-  removeItemFromCart(item: CartItemInterface) {
+  removeItemFromCart(
+    item: CartItemInterface,
+    updateUser = true
+  ): CartItemInterface[] {
     const filteredItems = this.cart.value.items.filter(
       (_item) => _item.id !== item.id
     );
-    // update state
+
+    if (updateUser) {
+      // update state
+      this.cart.next({ items: filteredItems });
+      this._snackbar.open('Item removed from cart', 'Ok', { duration: 3000 });
+    }
+
+    return filteredItems;
+  }
+
+  reduceQuantity(item: CartItemInterface) {
+    let itemForRemoval: CartItemInterface | undefined;
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if (_item.id === item.id) {
+        _item.quantity--;
+        if (_item.quantity === 0) {
+          itemForRemoval = _item;
+        }
+      }
+
+      return _item;
+    });
+
+    if (itemForRemoval) {
+      filteredItems = this.removeItemFromCart(itemForRemoval, false);
+    }
+
     this.cart.next({ items: filteredItems });
-    this._snackbar.open('Item removed from cart', 'Ok', { duration: 3000 });
+    this._snackbar.open('1 item removed from cart', 'Ok', { duration: 3000 });
   }
 }
