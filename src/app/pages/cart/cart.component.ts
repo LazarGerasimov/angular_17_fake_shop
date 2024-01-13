@@ -24,7 +24,6 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
-
   cartService = inject(CartService);
 
   cart: CartInterface = {
@@ -59,7 +58,10 @@ export class CartComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.dataSource = this.cart.items;
+    this.cartService.cart.subscribe((_cart: CartInterface) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
   }
 
   getTotal(items: Array<CartItemInterface>): number {

@@ -1,5 +1,5 @@
 <mat-toolbar class="border-x flex justify-between max-w-7xl mx-auto border-b">
-  <a href="/">Fakeshop Ltd</a>
+  <a routerLink="/">Fakeshop Ltd</a>
   <button mat-icon-button [mat-menu-trigger-for]="menu">
     <mat-icon
       [matBadge]="itemsQuantity"
@@ -13,7 +13,7 @@
     <div class="p-3 divide-y divide-solid">
       <div class="pb-3 flex justify-between">
         <span class="mr-16">{{ itemsQuantity }} items</span>
-        <a href="cart">View Cart</a>
+        <a routerLink="cart">View Cart</a>
       </div>
       <div *ngIf="cart.items.length" class="p-2">
         @for (item of cart.items; track item) {

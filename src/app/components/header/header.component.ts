@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
 import { CartInterface, CartItemInterface } from '../../models/cart.model';
 import { CartService } from '../../services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ import { CartService } from '../../services/cart.service';
     MatBadgeModule,
     MatButtonModule,
     MatMenuModule,
+    RouterModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
