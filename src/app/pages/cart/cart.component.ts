@@ -10,7 +10,13 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [MatTableModule, MatCardModule, CommonModule, MatButtonModule, RouterModule],
+  imports: [
+    MatTableModule,
+    MatCardModule,
+    CommonModule,
+    MatButtonModule,
+    RouterModule,
+  ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
