@@ -67,4 +67,8 @@ export class CartComponent implements OnInit {
   getTotal(items: Array<CartItemInterface>): number {
     return this.cartService.getTotal(items);
   }
+
+  onClearCart() {
+    this.cartService.clearCart();
+  }
 }
