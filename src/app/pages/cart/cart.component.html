@@ -1,0 +1,11 @@
+@if (cart.items.length) {
+<mat-card class="w-[20%] flex items-center justify-center mx-auto mt-7 px-1 py-4">
+  <p class="text-xl">Your cart is empty.</p>
+  <button mat-raised-button routerLink="/home">Start Shopping</button>
+</mat-card>
+} @else {
+<mat-card>
+  <p>Your cart is empty.</p>
+  <button mat-raised-button routerLink="/home">Start Shopping</button>
+</mat-card>
+}
