@@ -13,9 +13,19 @@ export class StoreService {
 
   constructor() {}
 
-  getAllProducts(limit = '12', sort = 'desc'): Observable<ProductInterface[]> {
+  getAllProducts(
+    limit = '12',
+    sort = 'desc',
+    category?: string
+  ): Observable<ProductInterface[]> {
     return this.http.get<ProductInterface[]>(
-      `${STORE_BASE_URL}/products?sort=${sort}&limit=${limit}`
+      `${STORE_BASE_URL}/products${
+        category ? '/category/' + category : ''
+      }?sort=${sort}&limit=${limit}`
     );
+  }
+
+  getAllCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${STORE_BASE_URL}/products/categories`);
   }
 }
