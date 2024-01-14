@@ -12,13 +12,13 @@
     >
       <div>
         <!-- Category -->
-        <h5 class="truncate hover:whitespace-normal">{{product?.title}}</h5>
-        <p class="truncate hover:whitespace-normal">{{product?.category}}</p>
-        <p *ngIf="fullWidthMode">{{product?.description}}</p>
+        <h5 class="truncate hover:whitespace-normal">{{product.title}}</h5>
+        <p class="truncate hover:whitespace-normal">{{product.category}}</p>
+        <p *ngIf="fullWidthMode">{{product.description}}</p>
       </div>
       <div class="flex justify-between p-2">
         <span class="text-red-400" [ngClass]="{ 'text-2xl': fullWidthMode }">{{
-          product?.price| currency
+          product.price| currency
         }}</span>
         <button (click)="onAddToCart()">
           <mat-icon class="text-gray-500">shopping_cart</mat-icon>
