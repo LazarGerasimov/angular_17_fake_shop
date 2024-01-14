@@ -13,7 +13,7 @@ export class StoreService {
 
   constructor() {}
 
-  getAllProducts(limit = 12, sort = 'desc'): Observable<ProductInterface[]> {
+  getAllProducts(limit = '12', sort = 'desc'): Observable<ProductInterface[]> {
     return this.http.get<ProductInterface[]>(
       `${STORE_BASE_URL}/products?sort=${sort}&limit=${limit}`
     );

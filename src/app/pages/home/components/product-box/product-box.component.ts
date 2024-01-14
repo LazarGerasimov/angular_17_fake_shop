@@ -13,20 +13,12 @@ import { ProductInterface } from '../../../../models/product.model';
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-
-  dummyProduct: ProductInterface | undefined = {
-    id: 1,
-    title: 'test title',
-    price: 75,
-    category: 'shoes',
-    description: 'test description',
-    image: 'https://via.placeholder.com/150',
-  };
+  @Input() product: ProductInterface | undefined;
 
   // add event emitter
   @Output() addToCart = new EventEmitter();
 
   onAddToCart() {
-    this.addToCart.emit(this.dummyProduct);
+    this.addToCart.emit(this.product);
   }
 }
